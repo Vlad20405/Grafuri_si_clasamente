@@ -3,23 +3,49 @@
 #include <string.h>
 #include <limits.h>
 
+#define totalEchipe 32
+
 struct Echipa{
     char* Nume_echipa; 
     float punctaj;
+    float prestigiu;
+    int pozitie;
     int nr_victorii;
 };
 typedef struct Echipa Echipa;
 
-struct Q_Elem{
-	Echipa *echipa_1, *echipa_2;
-	struct Q_Elem* next;
+struct Elem{
+	Echipa val;
+	struct Elem* next;
 };
-typedef struct Q_Elem Meciuri;
+typedef struct Elem Node;
 
-struct Queue{
-    Meciuri *front, *rear;
+struct Graph
+{
+    Echipa Varf; 
+    int V; //nr varfuri
+    int E; //nr muchii
+    int **matrice;
 };
-typedef struct Queue Queue;
+typedef struct Graph Graph;
 
 void eroare_la_deschidere();
 void eroare_la_alocare();
+
+Node *citireDateEchipe(FILE *fisier_in);
+void addAtBeginning(Node **head, Echipa v);
+void addAtEnd(Node** head, Echipa v);
+void eliberareLista(Node *head);
+
+int isEmptyStack(Node *top);
+void push(Node **top, Echipa echipa);
+Echipa pop(Node **top);
+void deleteStack(Node **top);
+
+void etapaInitiala(Node *head, Node **castigatori, Node **pierzatori, Graph *g);
+void etapaFinala(Node **castigatori, Node **pierzatori, Graph *g);
+
+Graph *create();
+void introduceInGraf(Graph *g, Node *echipa_castigatoare, Node *echipa_pierzatoare);
+
+void Cerinta_1(FILE* fisier_out_graf, Graph *g);
