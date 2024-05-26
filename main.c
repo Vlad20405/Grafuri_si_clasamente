@@ -35,5 +35,7 @@ int main(int arcg, char *argv[])
     eliberareLista(head);
     deleteStack(&castigatori);
     deleteStack(&pierzatori);
+    freeGraph(graf);
+    
     return 0;
 }

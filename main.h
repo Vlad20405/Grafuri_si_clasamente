@@ -22,7 +22,7 @@ typedef struct Elem Node;
 
 struct Graph
 {
-    Echipa Varf; 
+    Echipa *Varf; 
     int V; //nr varfuri
     int E; //nr muchii
     int **matrice;
@@ -42,10 +42,11 @@ void push(Node **top, Echipa echipa);
 Echipa pop(Node **top);
 void deleteStack(Node **top);
 
+Graph *create();
+void freeGraph(Graph *g);
+
 void etapaInitiala(Node *head, Node **castigatori, Node **pierzatori, Graph *g);
 void etapaFinala(Node **castigatori, Node **pierzatori, Graph *g);
-
-Graph *create();
 void introduceInGraf(Graph *g, Node *echipa_castigatoare, Node *echipa_pierzatoare);
 
 void Cerinta_1(FILE* fisier_out_graf, Graph *g);

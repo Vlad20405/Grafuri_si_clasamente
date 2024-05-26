@@ -7,7 +7,10 @@ Graph *create(){
         eroare_la_alocare();
 
     g->V = totalEchipe;
-
+    g->Varf = (Echipa*)malloc(g->V * sizeof(Echipa));
+    if(g->Varf == NULL)
+        eroare_la_alocare();
+    
     g->matrice = (int**)malloc(g->V * sizeof(int*));
     for(int i=0; i<g->V; i++){
         g->matrice[i] = (int*)calloc(g->V, sizeof(int));
@@ -18,7 +21,11 @@ Graph *create(){
     return g;
 }
 
-void introduceInGraf(Graph *g, Node *echipa_castigatoare, Node *echipa_pierzatoare){
-    g->matrice[echipa_pierzatoare->val.pozitie][echipa_castigatoare->val.pozitie] = 1;
-    g->E++;
+void freeGraph(Graph *g){
+    for(int i = 0; i<g->V; i++){
+        free(g->matrice[i]);
+    }
+    free(g->matrice);
+    free(g->Varf);
+    free(g);
 }
