@@ -28,6 +28,8 @@ int main(int arcg, char *argv[])
 
     Cerinta_1(fisier_out_graf, graf);
 
+    Cerinta_2(fisier_out_scor, castigatori, pierzatori);
+
     fclose(fisier_in);
     fclose(fisier_out_graf);
     fclose(fisier_out_scor);

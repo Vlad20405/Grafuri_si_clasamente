@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include <limits.h>
 
 #define totalEchipe 32
@@ -48,5 +49,8 @@ void freeGraph(Graph *g);
 void etapaInitiala(Node *head, Node **castigatori, Node **pierzatori, Graph *g);
 void etapaFinala(Node **castigatori, Node **pierzatori, Graph *g);
 void introduceInGraf(Graph *g, Node *echipa_castigatoare, Node *echipa_pierzatoare);
+double calculPrestigiu(Node *echipa);
+void afisarePrestigiuEchipe(FILE* fisier_out_scor, Node *castigatori, Node *pierzatori);
 
 void Cerinta_1(FILE* fisier_out_graf, Graph *g);
+void Cerinta_2(FILE* fisier_out_scor, Node *castigatori, Node *pierzatori);

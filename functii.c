@@ -14,7 +14,7 @@ void eroare_la_alocare(){
 
 Node *citireDateEchipe(FILE *fisier_in){
     Node *head = NULL;
-    char line[maxCaractere], *q;
+    char line[maxCaractere];
     
     for (int i = 0; i < totalEchipe; i++){
         Echipa e;
@@ -92,10 +92,17 @@ void etapaFinala(Node **castigatori, Node **pierzatori, Graph *g){
     Node *head = NULL;
     Node *head_c = NULL;
     Node *current = *castigatori;
+    int contor_runda=0;
+
     while(current != NULL){
-        addAtEnd(&head, current->val);
+        if(contor_runda%2 == 1)
+            addAtEnd(&head, current->val);
+        else
+            addAtBeginning(&head, current->val);
         current = current->next;
     }
+    contor_runda++;
+
     deleteStack(castigatori);
 
     head_c = head;
@@ -141,10 +148,33 @@ void etapaFinala(Node **castigatori, Node **pierzatori, Graph *g){
             }
         }
     }
-    //eliberareLista(head);
 }
 
 void introduceInGraf(Graph *g, Node *echipa_castigatoare, Node *echipa_pierzatoare){
     g->matrice[echipa_pierzatoare->val.pozitie][echipa_castigatoare->val.pozitie] = 1;
     g->E++;
+}
+
+double calculPrestigiu(Node *echipa){
+    double Pr = 0, q = 0.15;
+    int l = 6;
+
+    Pr = (q * pow((2-q), echipa->val.nr_victorii))/(pow(2, l) + pow((2-q), l) * (q-1));
+
+    return Pr;
+}
+
+void afisarePrestigiuEchipe(FILE* fisier_out_scor, Node *castigatori, Node *pierzatori){
+    Node *head = NULL;
+    
+    addAtBeginning(&head,castigatori->val);
+    while(pierzatori != NULL){
+        addAtBeginning(&head, pierzatori->val);
+        pierzatori = pierzatori->next;
+    }
+
+    while(head != NULL){
+        fprintf(fisier_out_scor, "%.4f %s\n", head->val.prestigiu, head->val.Nume_echipa);
+        head = head->next;
+    }
 }
