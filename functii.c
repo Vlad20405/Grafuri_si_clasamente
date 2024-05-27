@@ -148,6 +148,7 @@ void etapaFinala(Node **castigatori, Node **pierzatori, Graph *g){
             }
         }
     }
+    //eliberareLista(head);
 }
 
 void introduceInGraf(Graph *g, Node *echipa_castigatoare, Node *echipa_pierzatoare){
@@ -155,8 +156,8 @@ void introduceInGraf(Graph *g, Node *echipa_castigatoare, Node *echipa_pierzatoa
     g->E++;
 }
 
-double calculPrestigiu(Node *echipa){
-    double Pr = 0, q = 0.15;
+float calculPrestigiu(Node *echipa){
+    float Pr = 0, q = 0.15;
     int l = 6;
 
     Pr = (q * pow((2-q), echipa->val.nr_victorii))/(pow(2, l) + pow((2-q), l) * (q-1));
