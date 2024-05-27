@@ -10,3 +10,5 @@ Pentru a rula și verifica funcționalitatea programului, trebuie să descărca�
 
 ## Informații generale:
 * Pentru viitoarele persoane care doresc să îmbunătățească programul, se poate modifica orice în acesta, cu excepția fișierului `checker.sh` și a folderelor care conțin fișierele de `Input`, `RezultateGraf` și `RezultateScor`;
+
+## Rezolvarea cerințelor:
